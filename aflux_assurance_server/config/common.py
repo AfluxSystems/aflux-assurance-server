@@ -2,6 +2,7 @@
 Flask settings, and other custom settings specific to the driver.
 """
 import os
+from pathlib import Path
 # Flask Configuration
 # ---------------------------------------------------------------
 # NOTE: These three settings are only set in the app via runserver (local development)
@@ -12,24 +13,28 @@ FLASK_DEBUG = os.environ.get('FLASK_DEBUG', True)
 
 # Email Settings
 # -----------------------------------------
-RECIPIENT_LIST = (
-    'telecom.ns-oss@tdstelecom.com',
-)
+RECIPIENT_LIST = ()
 ERROR_RECIPIENT_LIST = RECIPIENT_LIST
 
 # aflux-assurance-server Settings
 # ---------------------------------------------------------------
 # Example:
-#SNAP_DRIVER_DISABLE_POLLING = os.environ.get('SNAP_DRIVER_DISABLE_POLLING', False)  # Used for satellite services only used for realtime requests
+EMPLOYMENT_FILE = os.environ.get(
+    'EMPLOYMENT_FILE',
+    default=os.path.join(
+        Path(os.path.dirname(os.path.realpath(__file__))).parent,
+        'data',
+        'employement.json'
+    )
+)
 
-# TSDB Settings
-# -----------------------------------------
-# TSDB_SETTINGS = {
-#     'BASE_URL': os.environ['TSDB_BASE_URL'],  # Ex: http://chewbacca.tds.local:8080
-#     'USERNAME': os.environ.get('TSDB_USERNAME', None),
-#     'PASSWORD': os.environ.get('TSDB_PASSWORD', None),
-# }
-
+UPLOAD_FOLDER = os.environ.get(
+    'UPLOAD_FOLDER',
+    default=os.path.join(
+        os.path.expanduser('~'),
+        'backups',
+    )
+)
 
 #  Import Logging Settings
 # -----------------------------------------

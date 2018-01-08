@@ -23,7 +23,7 @@ app.logger.debug("aflux-assurance-server is using settings: {}".format(
 
 # Here you can initialize any other components of your app.
 # For example, a scheduler. You can even attach the object to the app instance.
-# . . .
+
 
 # Register API blueprints
 app.register_blueprint(api_v1, url_prefix='/api/v1')
